@@ -29,6 +29,10 @@ export function customFilter(array, callback) {
 
 export function customPipe(...functions) {
   return function (input) {
-    return functions.reduce((acc, fn) => fn(acc), input);
+    let result = input;
+    for (let i = 0; i < functions.length; i++) {
+      result = functions[i](result);
+    }
+    return result;
   };
 }
